@@ -58,7 +58,7 @@ def get_class_names():
 def predict_disease(image_bytes, lang='en'):
 
     # Стою на плечах у гігантів. Ну так, трішки чітерства
-    PLANTNET_API_KEY = '2b10fiz8RZkbggtEv412LZVxe'
+    PLANTNET_API_KEY = 'secret, but you are able to see it in previous commit. Please, do not use my key'
 
     params = {
         'api-key': PLANTNET_API_KEY,
