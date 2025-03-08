@@ -1,0 +1,39 @@
+# docker-compose.yml
+# чат писав, я таке не вживаю.
+
+version: '3.8'
+
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - model-data:/app/models/weights
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    restart: unless-stopped
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  model-data:
