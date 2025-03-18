@@ -1,69 +1,105 @@
 import { StyleSheet } from 'react-native';
+import { colors, spacing, fontSizes, borderRadius } from './global';
 
 export default StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.background,
+    },
     resultsContainer: {
-        padding: 20,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    plantInfoContainer: {
-        backgroundColor: '#f0f0f0',
-        padding: 15,
-        borderRadius: 10,
-        marginBottom: 20,
-    },
-    plantName: {
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    plantConfidence: {
-        color: '#666',
-    },
-    sectionTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    diseaseCard: {
-        backgroundColor: '#f9f9f9',
-        padding: 15,
-        borderRadius: 10,
-        marginBottom: 10,
-    },
-    diseaseName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    diseaseSymptoms: {
-        color: '#666',
-    },
-    diseaseConfidence: {
-        color: '#4CAF50',
-        fontWeight: 'bold',
-    },
-    button: {
-        backgroundColor: '#4CAF50',
-        padding: 15,
-        borderRadius: 10,
-        marginTop: 20,
+        padding: spacing.xl,
         alignItems: 'center',
     },
-    buttonText: {
-        color: 'white',
-        fontSize: 16,
+    title: {
+        fontSize: fontSizes.xxlarge,
+        fontWeight: 'bold',
+        color: colors.primaryDark,
+        marginBottom: spacing.large,
+        textAlign: 'center',
     },
-    analysisImage: {
+    plantInfoSection: {
+        alignItems: 'center',
+        marginBottom: spacing.xxl,
         width: '100%',
-        height: 300,
-        borderRadius: 10,
-        marginBottom: 20
+        paddingBottom: spacing.large,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.border,
     },
-    plantFamily: {
-        color: '#666',
-        marginVertical: 5
-    }
+    plantName: {
+        fontSize: fontSizes.xlarge,
+        fontWeight: 'bold',
+        color: colors.primary,
+        marginBottom: spacing.xs,
+    },
+    scientificName: {
+        fontSize: fontSizes.medium,
+        fontStyle: 'italic',
+        color: colors.textLight,
+        marginBottom: spacing.medium,
+    },
+    confidenceText: {
+        fontSize: fontSizes.small,
+        color: colors.textLight,
+    },
+    diseasesSection: {
+        width: '100%',
+        marginBottom: spacing.xl,
+    },
+    healthyPlantSection: {
+        width: '100%',
+        backgroundColor: colors.primaryLight,
+        borderRadius: borderRadius.medium,
+        padding: spacing.large,
+        marginBottom: spacing.xl,
+        alignItems: 'center',
+    },
+    healthyText: {
+        fontSize: fontSizes.large,
+        fontWeight: 'bold',
+        color: colors.success,
+        marginBottom: spacing.medium,
+    },
+    healthyDescription: {
+        fontSize: fontSizes.medium,
+        color: colors.textMedium,
+        textAlign: 'center',
+    },
+    sectionTitle: {
+        fontSize: fontSizes.large,
+        fontWeight: 'bold',
+        color: colors.primaryDark,
+        marginBottom: spacing.medium,
+    },
+    alternativesSection: {
+        width: '100%',
+        marginBottom: spacing.xl,
+    },
+    alternativesDescription: {
+        fontSize: fontSizes.medium,
+        color: colors.textLight,
+        marginBottom: spacing.medium,
+    },
+    technicalInfo: {
+        width: '100%',
+        alignItems: 'center',
+        marginBottom: spacing.large,
+    },
+    processingTime: {
+        fontSize: fontSizes.small,
+        color: colors.textLight,
+        fontStyle: 'italic',
+    },
+    button: {
+        backgroundColor: colors.secondary,
+        paddingVertical: spacing.medium,
+        paddingHorizontal: spacing.xl,
+        borderRadius: borderRadius.medium,
+        marginTop: spacing.large,
+        marginBottom: spacing.xl,
+    },
+    buttonText: {
+        color: colors.background,
+        fontWeight: 'bold',
+        fontSize: fontSizes.medium,
+    },
 });

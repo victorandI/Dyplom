@@ -4,7 +4,7 @@ import * as ExpoImagePicker from 'expo-image-picker';
 import { uploadImage } from '../utils/api';
 import styles from '../styles/imagePicker';
 
-export default function ImagePicker({ onUploadStart, onUploadComplete, onUploadError }) {
+export default function ImagePicker({ plantId, plantName, onUploadStart, onUploadComplete, onUploadError }) {
     const [image, setImage] = useState(null);
 
     const pickImage = async () => {
@@ -46,17 +46,20 @@ export default function ImagePicker({ onUploadStart, onUploadComplete, onUploadE
         }
     };
 
-    // Upload image to server
     const handleUpload = async () => {
         if (!image) {
             Alert.alert('No Image', 'Please select an image first');
             return;
         }
 
+        if (!plantName) {
+            Alert.alert('Error', 'Please select a plant type first');
+            return;
+        }
+
         try {
             onUploadStart && onUploadStart();
 
-            // Create form data for image upload
             const formData = new FormData();
             const filename = image.split('/').pop();
             const match = /\.(\w+)$/.exec(filename);
@@ -68,7 +71,9 @@ export default function ImagePicker({ onUploadStart, onUploadComplete, onUploadE
                 type,
             });
 
-            // Send to API
+            formData.append('plant_name', plantName);
+            formData.append('plant_id', plantId);
+
             const response = await uploadImage(formData);
 
             onUploadComplete && onUploadComplete(response);
@@ -109,7 +114,7 @@ export default function ImagePicker({ onUploadStart, onUploadComplete, onUploadE
                     style={[styles.button, styles.analyzeButton]}
                     onPress={handleUpload}
                 >
-                    <Text style={styles.buttonText}>Analyze Plant</Text>
+                    <Text style={styles.buttonText}>Analyze {plantName} Plant</Text>
                 </TouchableOpacity>
             )}
         </View>

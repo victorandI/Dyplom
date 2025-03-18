@@ -1,25 +1,20 @@
 import axios from 'axios';
 
 const API_URL = 'http://192.168.3.10:5000/api';
-const api = axios.create({
-    baseURL: API_URL,
-    timeout: 10000, // 10 секунд
-    headers: {
-        'Content-Type': 'application/json'
-    }
-});
 export const uploadImage = async (formData) => {
     try {
-        const response = await api.post(`/predict`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+        console.log('Sending data to API:', Object.fromEntries(formData));
 
-            return response.data;
+        const response = await axios.post(`${API_URL}/predict`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
 
+        console.log('API response:', response.data);
+        return response.data;
     } catch (error) {
-        console.error('API Error:', error.response || error);
+        console.error('API Error:', error.response?.data || error.message || error);
         throw error;
     }
 };
