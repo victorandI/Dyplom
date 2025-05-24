@@ -1,0 +1,16 @@
+{
+  "plants": {
+    "Apple": {
+      "model_file": "apple_model.tflite",
+      "mapping_file": "apple_mapping.json"
+    },
+    "Peach": {
+      "model_file": "peach_model.tflite",
+      "mapping_file": "peach_mapping.json"
+    },
+    "Tomato": {
+      "model_file": "tomato_model.tflite",
+      "mapping_file": "tomato_mapping.json"
+    }
+  }
+}

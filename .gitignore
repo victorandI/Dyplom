@@ -1,0 +1,118 @@
+# Python backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment - повністю ігнорувати venv
+venv/
+backend/venv/
+**/venv/
+env/
+.env
+.venv
+ENV/
+env.bak/
+venv.bak/
+
+# TensorFlow models and checkpoints
+*.tflite
+*.h5
+*.pb
+*.ckpt
+*.onnx
+checkpoint
+*.data-*
+*.index
+*.meta
+saved_model/
+saved_model.pb
+variables/
+
+# TensorFlow runtime files
+**/tensorflow/
+**/tensorflow_estimator*/
+**/tensorboard*/
+**/tf_*
+
+# Node/JS stuff
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnp/
+.pnp.js
+.expo/
+dist/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - JetBrains
+.idea/
+*.iws
+*.iml
+*.ipr
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# React Native specific
+android/gradle.properties
+*.keystore
+local.properties
+mobile/android/.gradle
+mobile/android/build
+mobile/android/app/build
+mobile/ios/Pods/
+mobile/ios/build/
+
+# Backend uploads/data
+backend/uploads/
+backend/models/weights/
+data/

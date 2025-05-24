@@ -1,59 +1,96 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import ResultCard from '../components/ResultCard';
+import AlternativeDiseaseCard from '../components/AlternativeDiseaseCard';
 import styles from '../styles/resultScreen';
 import { commonStyles } from '../styles/global';
 
 export default function ResultsScreen({ route, navigation }) {
-    const { results, imageUri } = route.params || { results: {}, imageUri: null };
+    const { results, plant } = route.params || {
+        results: {
+            diseases: [],
+            alternative_diseases: [],
+            plant: {
+                common_name: "Unknown",
+                scientific_name: "Unknown"
+            },
+            overall_analysis_confidence: 0
+        },
+        plant: {
+            name: "Unknown Plant"
+        }
+    };
+
+    const identifiedPlant = results.plant || {
+        common_name: plant?.name || "Unknown",
+        scientific_name: plant?.scientificName || "Unknown",
+        identification_confidence: results.overall_analysis_confidence || 0
+    };
+
+    const mainDiseases = results.diseases || [];
+
+    const alternativeDiseases = results.alternative_diseases || [];
+
+    const processingTime = results.processing_time_ms || 0;
 
     return (
         <ScrollView style={commonStyles.container}>
             <View style={styles.resultsContainer}>
-                {/* Показуємо фото першим */}
-                {imageUri && (
-                    <Image
-                        source={{ uri: imageUri }}
-                        style={styles.analysisImage}
-                        resizeMode="cover"
-                    />
+                <Text style={styles.title}>Analysis Results</Text>
+
+                {/* Plant Information Section */}
+                <View style={styles.plantInfoSection}>
+                    <Text style={styles.plantName}>{identifiedPlant.common_name}</Text>
+                    <Text style={styles.scientificName}>{identifiedPlant.scientific_name}</Text>
+                    {identifiedPlant.identification_confidence > 0 && (
+                        <Text style={styles.confidenceText}>
+                            Identification confidence: {identifiedPlant.identification_confidence.toFixed(1)}%
+                        </Text>
+                    )}
+                </View>
+
+                {/* Main Diseases Section */}
+                {mainDiseases.length > 0 ? (
+                    <View style={styles.diseasesSection}>
+                        <Text style={styles.sectionTitle}>Detected Diseases</Text>
+                        {mainDiseases.map((disease, index) => (
+                            <ResultCard key={index} disease={disease} />
+                        ))}
+                    </View>
+                ) : (
+                    <View style={styles.healthyPlantSection}>
+                        <Text style={styles.healthyText}>No diseases detected</Text>
+                        <Text style={styles.healthyDescription}>
+                            Your {identifiedPlant.common_name.toLowerCase()} plant appears to be healthy!
+                        </Text>
+                    </View>
                 )}
 
-                <Text style={styles.title}>Plant Analysis</Text>
+                {/* Alternative Diseases Section */}
+                {alternativeDiseases.length > 0 && (
+                    <View style={styles.alternativesSection}>
+                        <Text style={styles.sectionTitle}>Other Possibilities</Text>
+                        <Text style={styles.alternativesDescription}>
+                            These conditions have lower confidence but might be worth investigating:
+                        </Text>
+                        {alternativeDiseases.map((disease, index) => (
+                            <AlternativeDiseaseCard key={index} disease={disease} />
+                        ))}
+                    </View>
+                )}
 
-                {/* Інформація про рослину з повною назвою */}
-                <View style={styles.plantInfoContainer}>
-                    <Text style={styles.plantName}>
-                        {results.plant.common_name}
-                        {' '}
-                        ({results.plant.scientific_name})
-                    </Text>
-                    <Text style={styles.plantFamily}>
-                        Family: {results.plant.family}
-                    </Text>
-                    <Text style={styles.plantConfidence}>
-                        Identification Confidence: {results.plant.identification_confidence}%
+                {/* Technical Info */}
+                <View style={styles.technicalInfo}>
+                    <Text style={styles.processingTime}>
+                        Processing time: {processingTime}ms
                     </Text>
                 </View>
 
-                {/* Захворювання */}
-                <Text style={styles.sectionTitle}>Possible Diseases</Text>
-                {results.diseases.map((disease, index) => (
-                    <View key={index} style={styles.diseaseCard}>
-                        <Text style={styles.diseaseName}>{disease.name}</Text>
-                        <Text style={styles.diseaseSymptoms}>
-                            Symptoms: {disease.symptoms}
-                        </Text>
-                        <Text style={styles.diseaseConfidence}>
-                            Confidence: {disease.confidence}%
-                        </Text>
-                    </View>
-                ))}
-
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => navigation.navigate('HomeScreen')}
+                    onPress={() => navigation.navigate('PlantSelection')}
                 >
-                    <Text style={styles.buttonText}>Analyze Another Image</Text>
+                    <Text style={styles.buttonText}>Analyze Another Plant</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>

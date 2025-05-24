@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import {colors, spacing, fontSizes, shadows, borderRadius} from './global';
+import { colors, spacing, fontSizes, shadows, borderRadius } from './global';
 
 export default StyleSheet.create({
     hero: {
         padding: spacing.xl,
         alignItems: 'center',
-        marginTop: spacing.xl,
+        marginTop: spacing.medium,
     },
     title: {
         fontSize: fontSizes.xxlarge,
@@ -19,6 +19,40 @@ export default StyleSheet.create({
         color: colors.textLight,
         textAlign: 'center',
         marginBottom: spacing.xl,
+    },
+    selectedPlantContainer: {
+        backgroundColor: colors.backgroundLight,
+        padding: spacing.large,
+        margin: spacing.large,
+        marginBottom: 0,
+        borderRadius: borderRadius.medium,
+        ...shadows.small,
+    },
+    selectedPlantLabel: {
+        fontSize: fontSizes.medium,
+        color: colors.textLight,
+        marginBottom: spacing.medium,
+    },
+    selectedPlantDetails: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    selectedPlantImage: {
+        width: 60,
+        height: 60,
+        borderRadius: borderRadius.circle,
+        marginRight: spacing.large,
+        backgroundColor: colors.primaryLight,
+    },
+    selectedPlantName: {
+        fontSize: fontSizes.large,
+        fontWeight: 'bold',
+        color: colors.primaryDark,
+    },
+    selectedPlantScientific: {
+        fontSize: fontSizes.small,
+        fontStyle: 'italic',
+        color: colors.textLight,
     },
     infoSection: {
         padding: spacing.xl,
