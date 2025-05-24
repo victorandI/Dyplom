@@ -62,7 +62,6 @@ plant_disease_recognition/
 
 ### Prerequisites
 
-- Docker and Docker Compose
 - Node.js (for local frontend development)
 - Python 3.9+ (for local backend development)
 
@@ -74,12 +73,8 @@ plant_disease_recognition/
    cd plant-disease-recognition
    ```
 
-2. Start the application using Docker Compose:
-   ```
-   docker-compose up
-   ```
 
-3. Access the application:
+2. Access the application:
     - Frontend: http://localhost:3000
     - Backend API: http://localhost:5000/api
 
