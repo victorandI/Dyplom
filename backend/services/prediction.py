@@ -4,28 +4,6 @@ from utils.image_utils import preprocess_image
 from utils.model_utils import load_model, load_class_names
 from config import Config
 import requests
-# Load model and class names
-'''model_path = os.path.join(Config.MODEL_PATH, 'plant_disease_model')
-class_names_path = os.path.join(Config.MODEL_PATH, 'class_indices.json')
-
-# хахахахахахах
-_model = None
-_class_names = None
-
-# хахахахахахаха
-def get_model():
-
-    global _model
-    if _model is None:
-        _model = load_model(model_path)
-    return _model
-
-def get_class_names():
-
-    global _class_names
-    if _class_names is None:
-        _class_names = load_class_names(class_names_path)
-    return _class_names'''
 
 import tensorflow as tf
 import numpy as np
